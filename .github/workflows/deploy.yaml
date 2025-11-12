@@ -33,7 +33,7 @@ jobs:
 
       - name: Build, tag, and push image
         run: |
-          IMAGE_URI=${{ steps.ecr.outputs.registry }}/${{ env.ECR_REPO }}:${{ github.sha }}
+          IMAGE_URI=${{ steps.ecr.outputs.registry }}/${{ env.ECR_REPO }}:latest
           docker build -t $IMAGE_URI .
           docker push $IMAGE_URI
           echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
