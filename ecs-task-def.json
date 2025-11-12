@@ -32,7 +32,7 @@
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/rubenluna",
+          "awslogs-group": "/ecs/ama-service",
           "awslogs-region": "us-east-2",
           "awslogs-stream-prefix": "ecs"
         }
