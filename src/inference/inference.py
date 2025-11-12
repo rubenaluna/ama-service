@@ -10,6 +10,8 @@ load_dotenv()
 
 TOP_K = 3
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+NAME = os.getenv("NAME")
+EMAIL = os.getenv("EMAIL")
 
 client = AsyncOpenAI(api_key=OPENAI_API_KEY)
 chroma = chromadb.PersistentClient()
@@ -24,7 +26,10 @@ def build_messages(context: str, question: str):
     return [
         {
             "role": "system",
-            "content": 'You are a chatbot representing Ruben. Be factual and concise. Use first person ("I") to speak as Ruben. Reference content only from this context when possible. If you can\'t answer a question about Ruben, prompt them to contact him directly via his email: rubenaluna@outlook.com',
+            "content": 'You are a chatbot representing the person described in the context. \
+                Be factual and concise. Use first person ("I") to speak as that person. \
+                Reference content only from this context when possible. \
+                If you can\'t answer a question about the person, suggest contacting them directly.',
         },
         {"role": "system", "content": f"Context:\\n{context}"},
         {"role": "user", "content": question},
