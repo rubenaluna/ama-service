@@ -44,4 +44,4 @@ jobs:
           task-definition: ecs-task-def.json
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
-          image: ${{ steps.ecr.outputs.registry }}/${{ env.ECR_REPO }}:${{ github.sha }}
+          image: ${{ steps.ecr.outputs.registry }}/${{ env.ECR_REPO }}:latest
