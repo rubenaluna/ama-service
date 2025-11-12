@@ -1,5 +1,5 @@
 {
-  "family": "rubenluna-ama-service",
+  "family": "ama-service",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "512",
