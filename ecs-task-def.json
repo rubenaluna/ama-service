@@ -1,0 +1,42 @@
+{
+  "family": "rubenluna-ama-service",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "executionRoleArn": "arn:aws:iam::047719626299:role/ecsRole",
+  "taskRoleArn": "arn:aws:iam::047719626299:role/ecsRole",
+  "containerDefinitions": [
+    {
+      "name": "ama-service",
+      "image": "047719626299.dkr.ecr.us-east-2.amazonaws.com/rubenluna/ama-service-repository:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8000,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        {
+          "name": "PORT",
+          "value": "8000"
+        }
+      ],
+      "secrets": [
+        {
+          "name": "OPENAI_API_KEY",
+          "valueFrom": "arn:aws:secretsmanager:us-east-2:047719626299:secret:openai-api-key-uv87Z9"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/rubenluna",
+          "awslogs-region": "us-east-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
